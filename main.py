@@ -1,7 +1,13 @@
 from team import Team
 from player import Player
 from game import play_inning
-from utils import optimal_batting_order, display_scoreboard
+from utils import (
+    display_scoreboard_gui,
+    optimal_batting_order,
+    display_scoreboard,
+    choose_batting_order,
+    generate_commentary
+)
 
 def main():
     team_a = Team("Team A")
@@ -10,7 +16,7 @@ def main():
     # Add players to teams
     team_a.add_player(Player("Player A1", "batsman", 45.0, 0.0))
     team_a.add_player(Player("Player A2", "bowler", 15.0, 25.0))
-    team_a.add_player(Player("Player A3", "all-rounder", 35.0, 30.0))   
+    team_a.add_player(Player("Player A3", "all-rounder", 35.0, 30.0))
     team_a.add_player(Player("Player A4", "batsman", 40.0, 0.0))
     team_a.add_player(Player("Player A5", "bowler", 10.0, 20.0))
     team_a.add_player(Player("Player A6", "batsman", 50.0, 0.0))
@@ -32,16 +38,24 @@ def main():
     team_b.add_player(Player("Player B10", "bowler", 16.0, 21.0))
     team_b.add_player(Player("Player B11", "batsman", 43.0, 0.0))
 
+    # Choose batting order for both teams
+    choose_batting_order(team_a)
+    choose_batting_order(team_b)
 
     # Play the game
-    optimal_batting_order(team_a)
-    optimal_batting_order(team_b)
-
     play_inning(team_a, 20)
     play_inning(team_b, 20)
 
-    display_scoreboard(team_a)
-    display_scoreboard(team_b)
+    display_scoreboard_gui(team_a)
+    display_scoreboard_gui(team_a)
+
+    # Determine the winner
+    if team_a.total_score > team_b.total_score:
+        print("\nTeam A wins!")
+    elif team_a.total_score < team_b.total_score:
+        print("\nTeam B wins!")
+    else:
+        print("\nThe match is a draw!")
 
 if __name__ == "__main__":
     main()

@@ -5,4 +5,7 @@ class Player:
         self.batting_avg = batting_avg
         self.bowling_avg = bowling_avg
         self.runs_scored = 0
+        self.balls_faced = 0
         self.wickets_taken = 0
+        self.runs_conceded = 0
+        self.balls_bowled = 0
