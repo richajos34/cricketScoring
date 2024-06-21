@@ -1,6 +1,6 @@
 import tkinter as tk
 import random
-from PIL import Image, ImageTk  # Ensure you have Pillow installed: pip install Pillow
+from PIL import Image, ImageTk
 from team import Team
 from player import Player
 from game import play_inning
@@ -23,15 +23,13 @@ class CricketSimulator:
         self.start_button = tk.Button(root, text="Start Game", command=self.start_game, bg="blue", fg="white")
         self.start_button.pack()
 
-        # Load player icon
-        self.player_icon = self.load_icon('player.png')  # Use a generic player icon for simplicity
-
-        # Dictionary to store player icons
+        self.player_icon = self.load_icon('player.png')
         self.player_icons = {}
 
     def load_icon(self, file_name):
         try:
             image = Image.open(file_name)
+            image = image.resize((10, 10), Image.ANTIALIAS)
             return ImageTk.PhotoImage(image)
         except Exception as e:
             print(f"Error loading icon {file_name}: {e}")
