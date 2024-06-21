@@ -96,21 +96,17 @@ class CricketSimulator:
         self.canvas.create_text(400, 30, text="Cricket Game Board", fill="white", font=("Helvetica", 16))
 
     def update_player_on_board(self, team, player, runs, balls_faced, wickets_lost):
-        # Remove previous player icon if exists
         if player.name in self.player_icons:
             self.canvas.delete(self.player_icons[player.name])
             self.canvas.delete(self.player_icons[f"{player.name}_text"])
 
-        # Calculate new position
         x = 100 + (runs * 5) % 600
         y = 70 + (wickets_lost * 25)
         player_text = f"{player.name}: {runs} ({balls_faced})"
 
-        # Create player icon and text
         player_icon_id = self.canvas.create_image(x, y, image=self.player_icon, anchor=tk.CENTER)
         player_text_id = self.canvas.create_text(x, y + 20, text=player_text, fill="yellow", font=("Helvetica", 10))
 
-        # Store the icon and text IDs to update later
         self.player_icons[player.name] = player_icon_id
         self.player_icons[f"{player.name}_text"] = player_text_id
 
@@ -133,7 +129,7 @@ class CricketSimulator:
                     bowler.runs_conceded += runs
                 self.update_player_on_board(team, batsman, batsman.runs_scored, batsman.balls_faced, team.wickets_lost)
                 self.root.update()
-                self.root.after(500)  # Delay to simulate real-time updates
+                self.root.after(500)
 
     def simulate_ball_with_commentary(self, batsman, bowler):
         outcome = random.choices(

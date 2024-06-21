@@ -6,7 +6,7 @@ def simulate_ball(batsman, bowler):
         ['dot', 'single', 'double', 'triple', 'four', 'six', 'wicket'],
         [0.4, 0.3, 0.1, 0.05, 0.1, 0.05, 0.1]
     )[0]
-    print(generate_commentary(outcome, batsman, bowler))  # Add commentary here
+    print(generate_commentary(outcome, batsman, bowler))
     return outcome
 
 def play_inning(team, overs):
@@ -15,7 +15,7 @@ def play_inning(team, overs):
             if team.wickets_lost == 10 or team.wickets_lost >= len(team.players):
                 return
             batsman = team.players[team.wickets_lost]
-            bowler = team.players[-1]  # Assuming last player as bowler for simplicity
+            bowler = team.players[-1]
             outcome = simulate_ball(batsman, bowler)
             if outcome == 'wicket':
                 team.wickets_lost += 1

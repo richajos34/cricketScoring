@@ -46,8 +46,6 @@ def display_scoreboard_gui(team):
 
     window.mainloop()
 
-# Example usage
-# display_scoreboard_gui(team_a)
 
 
 def save_game_state(teams, filename="game_state.json"):
